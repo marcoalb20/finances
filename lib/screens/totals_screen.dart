@@ -4,33 +4,17 @@ import 'package:finances/widgets/widgets.dart';
 class TotalsScreen extends StatelessWidget {
   const TotalsScreen({super.key});
 
-  static Color backgroundColor = Color.fromRGBO(238, 238, 238, 1);
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Color.fromRGBO(255, 255, 255, 1);
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              color: Color.fromRGBO(255, 212, 99, 1),
-              child: Center(
-                child: Text(
-                  'Visualiza tus totales',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Stack(),
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: Colors.red.shade200,
-            ),
-          ],
-        ),
+        child: Column(children: [CustomTitle(), CustomTotalList()]),
       ),
     );
   }
 }
+
+

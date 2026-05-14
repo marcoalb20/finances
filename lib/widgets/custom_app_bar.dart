@@ -4,14 +4,17 @@ import 'package:hugeicons/hugeicons.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
-  // static Color backgroundColor = Color.fromRGBO(238, 238, 238, 1);
+  static Color backgroundColor = Color.fromRGBO(238, 238, 238, 1);
   // static Color backgroundColor = Colors.red;
-  static Color backgroundColor = Color.fromRGBO(255, 212, 99, 1);
+  // static Color backgroundColor = Color(0xFF4A0080);
+  // static Color backgroundColor = Color.fromRGBO(255, 212, 99, 1);
+  // static Color backgroundColor =  Color.fromRGBO(157, 64, 217, 1);
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       color: backgroundColor,
+      padding: EdgeInsets.only(top: 20),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Row(

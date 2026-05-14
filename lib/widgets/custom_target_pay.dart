@@ -19,7 +19,7 @@ class CustomTargetPay extends StatelessWidget {
     color: backTargetContentColor,
   );
 
-  static Color frontTargetColor = Color.fromRGBO(157, 64, 217, 1);
+  static Color frontTargetColor = Color(0xFF68548e);
   static Color frontTargetContentColor = Color.fromRGBO(255, 255, 255, 1);
   static TextStyle frontContentStyle = TextStyle(
     fontSize: contentSize,

@@ -1,12 +1,16 @@
 import 'package:finances/controllers/screen_controller.dart';
 import 'package:finances/providers/finance_provider.dart';
+import 'package:finances/providers/page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => FinanceProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => FinanceProvider()),
+        ChangeNotifierProvider(create: (_) => PageProvider()),
+      ],
       child: MyApp(),
     ),
   );
