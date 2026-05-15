@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 
 class CustomTotalList extends StatelessWidget {
   const CustomTotalList({super.key});
+
+  static Color boxShadow = Color.fromRGBO(238, 238, 238, 1);
+  static Color boxColor = Color.fromRGBO(255, 255, 255, 1);
+
   @override
   Widget build(BuildContext context) {
-    final financeProvider = Provider.of<FinanceProvider>(context);
-
-    Color boxShadow = Color.fromRGBO(238, 238, 238, 1);
-    Color boxColor = Color.fromRGBO(255, 255, 255, 1);
     return Stack(
       children: [
         Container(height: 60, decoration: BoxDecoration(color: boxShadow)),
@@ -23,36 +23,7 @@ class CustomTotalList extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                children: [
-                  CustomTotalBox(
-                    bgColor: Color(0xFF68548e),
-                    boxIcon: HugeIcons.strokeRoundedMoneyBag01,
-                    boxTitle: 'Total de Ingresos',
-                    boxAmount: financeProvider.balance.toStringAsFixed(1),
-                  ),
-                  CustomTotalBox(
-                    bgColor: Color(0xFFffd463),
-                    boxIcon: HugeIcons.strokeRoundedCreditCardPos,
-                    boxTitle: 'Total de Egresos',
-                    boxAmount: financeProvider.expensesTotal.toStringAsFixed(1),
-                  ),
-                  CustomTotalBox(
-                    bgColor: Color(0xFFffd463),
-                    boxIcon: HugeIcons.strokeRoundedSavings,
-                    boxTitle: 'Total Bruto',
-                    boxAmount: financeProvider.grossTotal.toStringAsFixed(1),
-                  ),
-                  CustomTotalBox(
-                    bgColor: Color(0xFF68548e),
-                    boxIcon: HugeIcons.strokeRoundedPiggyBank,
-                    boxTitle: 'Total de Ahorro',
-                    boxAmount: financeProvider.saving.toStringAsFixed(1),
-                  ),
-                ],
-              ),
+              CustomTotalsContainer(),
               SizedBox(height: 20),
               CustomFreeBox(),
               SizedBox(height: 10),
@@ -61,6 +32,49 @@ class CustomTotalList extends StatelessWidget {
               CustomEditButton(),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class CustomTotalsContainer extends StatelessWidget {
+  const CustomTotalsContainer({super.key});
+
+  static Color purpleBox = Color(0xFF68548e);
+  static Color orangeBox = Color(0xFFffd463);
+
+  @override
+  Widget build(BuildContext context) {
+    final financeProvider = Provider.of<FinanceProvider>(context);
+
+    return Wrap(
+      spacing: 20,
+      runSpacing: 20,
+      children: [
+        CustomTotalBox(
+          bgColor: purpleBox,
+          boxIcon: HugeIcons.strokeRoundedMoneyBag01,
+          boxTitle: 'Total de Ingresos',
+          boxAmount: financeProvider.balance.toStringAsFixed(1),
+        ),
+        CustomTotalBox(
+          bgColor: orangeBox,
+          boxIcon: HugeIcons.strokeRoundedCreditCardPos,
+          boxTitle: 'Total de Egresos',
+          boxAmount: financeProvider.expensesTotal.toStringAsFixed(1),
+        ),
+        CustomTotalBox(
+          bgColor: orangeBox,
+          boxIcon: HugeIcons.strokeRoundedSavings,
+          boxTitle: 'Total Bruto',
+          boxAmount: financeProvider.grossTotal.toStringAsFixed(1),
+        ),
+        CustomTotalBox(
+          bgColor: purpleBox,
+          boxIcon: HugeIcons.strokeRoundedPiggyBank,
+          boxTitle: 'Total de Ahorro',
+          boxAmount: financeProvider.saving.toStringAsFixed(1),
         ),
       ],
     );
@@ -80,6 +94,7 @@ class CustomTotalBox extends StatelessWidget {
   final List<List<dynamic>> boxIcon;
   final String boxTitle;
   final dynamic boxAmount;
+  static Color blurBox = Colors.black.withValues(alpha: 0.4);
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +113,7 @@ class CustomTotalBox extends StatelessWidget {
             left: 30,
             child: HugeIcon(icon: boxIcon, size: 150, color: Colors.white),
           ),
-          Positioned.fill(
-            child: Container(color: Colors.black.withValues(alpha: 0.4)),
-          ),
+          Positioned.fill(child: Container(color: blurBox)),
           Positioned(
             top: 10,
             left: 10,
@@ -137,15 +150,21 @@ class CustomTotalBox extends StatelessWidget {
 class CustomFreeBox extends StatelessWidget {
   const CustomFreeBox({super.key});
 
+  static Color buttonColor = Color(0xFF68548e);
+  static Color textColor = Colors.white;
+  static double borderRadius = 20;
+
   @override
   Widget build(BuildContext context) {
     final financeProvider = Provider.of<FinanceProvider>(context);
 
-    Color buttonColor = Color(0xFF68548e);
-    Color textColor = Colors.white;
-    double borderRadius = 20;
-
     int free = (financeProvider.free).toInt();
+
+    var textStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: textColor,
+    );
 
     return Container(
       width: double.infinity,
@@ -156,16 +175,7 @@ class CustomFreeBox extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Center(
-            child: Text(
-              'Uso libre: S/ $free',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: textColor,
-              ),
-            ),
-          ),
+          Center(child: Text('Uso libre: S/ $free', style: textStyle)),
         ],
       ),
     );
@@ -175,15 +185,21 @@ class CustomFreeBox extends StatelessWidget {
 class CustomPercentageBox extends StatelessWidget {
   const CustomPercentageBox({super.key});
 
+  static Color buttonColor = Color.fromRGBO(255, 212, 99, 1);
+  static Color textColor = Colors.black;
+  static double borderRadius = 20;
+
   @override
   Widget build(BuildContext context) {
     final financeProvider = Provider.of<FinanceProvider>(context);
 
-    Color buttonColor = Color.fromRGBO(255, 212, 99, 1);
-    Color textColor = Colors.black;
-    double borderRadius = 20;
-
     int percentage = (financeProvider.percentage * 100).toInt();
+
+    var textStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: textColor,
+    );
 
     return Container(
       width: double.infinity,
@@ -197,11 +213,7 @@ class CustomPercentageBox extends StatelessWidget {
           Center(
             child: Text(
               'Ahorrarás un $percentage % este mes',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: textColor,
-              ),
+              style: textStyle,
             ),
           ),
         ],
@@ -213,16 +225,16 @@ class CustomPercentageBox extends StatelessWidget {
 class CustomEditButton extends StatelessWidget {
   const CustomEditButton({super.key});
 
+  static Color buttonColor = Color(0xFF68548e);
+  static Color iconColor = Colors.white;
+  static double borderRadius = 20;
+
   @override
   Widget build(BuildContext context) {
     final financeProvider = Provider.of<FinanceProvider>(
       context,
       listen: false,
     );
-
-    Color buttonColor = Color(0xFF68548e);
-    Color iconColor = Colors.white;
-    double borderRadius = 20;
 
     return InkWell(
       onTap: () {

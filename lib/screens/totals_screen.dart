@@ -16,5 +16,3 @@ class TotalsScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -20,12 +20,6 @@ class FinanceProvider extends ChangeNotifier {
     _balance = newBalance;
     setGrossAndSaving();
     notifyListeners();
-
-    /*
-    Actualizar Balance
-      Actualizar Bruto
-        Actualizar ahorro    
-    */
   }
 
   List<ExpensesModel> get expenses => _expenses;
@@ -70,5 +64,4 @@ class FinanceProvider extends ChangeNotifier {
   }
 
   double get free => _free;
-
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTitle extends StatelessWidget {
   const CustomTitle({super.key});
+
   static Color backgroundColor = Color.fromRGBO(238, 238, 238, 1);
 
   @override
