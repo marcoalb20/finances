@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
 
-class CustomTotalList extends StatelessWidget {
-  const CustomTotalList({super.key});
+class CustomTotalBalanceList extends StatelessWidget {
+  const CustomTotalBalanceList({super.key});
 
   static Color boxShadow = Color.fromRGBO(238, 238, 238, 1);
   static Color boxColor = Color.fromRGBO(255, 255, 255, 1);

@@ -11,7 +11,7 @@ class TotalsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
-        child: Column(children: [CustomTitle(), CustomTotalList()]),
+        child: Column(children: [CustomTotalTitle(), CustomTotalBalanceList()]),
       ),
     );
   }

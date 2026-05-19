@@ -30,4 +30,16 @@ class ExpensesModel {
   set amountExpense(double newAmount) {
     amount = newAmount;
   }
+
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'month': month,
+    'amount': amount,
+  };
+
+  factory ExpensesModel.fromJson(Map<String, dynamic> json) => ExpensesModel(
+    name: json['name'] as String,
+    month: json['month'] as String,
+    amount: (json['amount'] as num).toDouble(),
+  );
 }

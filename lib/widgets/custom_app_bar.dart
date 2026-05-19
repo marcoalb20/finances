@@ -1,5 +1,7 @@
+import 'package:finances/providers/finance_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -8,6 +10,11 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final financeProvider = Provider.of<FinanceProvider>(
+      context,
+      listen: false,
+    );
+
     return Container(
       width: double.infinity,
       color: backgroundColor,
@@ -31,16 +38,23 @@ class CustomAppBar extends StatelessWidget {
                   color: Colors.black,
                 ),
                 SizedBox(width: 10),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: HugeIcon(
-                    icon: HugeIcons.strokeRoundedUser,
-                    size: 25,
-                    color: Colors.white,
+                InkWell(
+                  onTap: () {
+                    print('user');
+                    showUserForm(context, financeProvider);
+                  },
+                  // splashColor: Colors.red,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: HugeIcon(
+                      icon: HugeIcons.strokeRoundedUser,
+                      size: 25,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -50,4 +64,40 @@ class CustomAppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+void showUserForm(BuildContext context, FinanceProvider financeProvider) {
+  final balanceController = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Editar Nombre'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            controller: balanceController,
+            decoration: const InputDecoration(labelText: 'Ingresa tu nombre'),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancelar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final nUser = balanceController.text;
+
+            financeProvider.user = nUser;
+
+            Navigator.pop(context);
+          },
+          child: const Text('Guardar'),
+        ),
+      ],
+    ),
+  );
 }

@@ -23,6 +23,7 @@ class ScreenController extends StatelessWidget {
           Expanded(
             child: PageView(
               controller: pageProvider.pageController,
+              physics: const NeverScrollableScrollPhysics(),
               children: [StartsScreen(), TotalsScreen(), OutflowsScreen()],
             ),
           ),
@@ -58,7 +59,7 @@ class ScreenController extends StatelessWidget {
             },
           ),
         ],
-        selectedTab: 0,
+        selectedTab: pageProvider.actualPage,
       ),
     );
   }

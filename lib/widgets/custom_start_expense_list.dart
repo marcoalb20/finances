@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:finances/models/expenses_model.dart';
 import 'package:intl/intl.dart';
 
-class CustomStartList extends StatelessWidget {
-  const CustomStartList({super.key});
+class CustomStartExpenseList extends StatelessWidget {
+  const CustomStartExpenseList({super.key});
 
   static Color boxColor = Colors.white;
   static double borderRadius = 20;

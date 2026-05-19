@@ -1,10 +1,11 @@
 import 'package:finances/providers/finance_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class CustomTargetPay extends StatelessWidget {
-  const CustomTargetPay({super.key});
+class CustomStartTargetPay extends StatelessWidget {
+  const CustomStartTargetPay({super.key});
 
   static double targetPadding = 10;
   static double targetBorderRadius = 20;
@@ -12,7 +13,7 @@ class CustomTargetPay extends StatelessWidget {
   static double contentSize = 15;
   static double balanceSize = 30;
 
-  static Color backTargetColor = Color.fromRGBO(255, 212, 99, 1);
+  static Color backTargetColor = Color(0xFFffd463);
   static Color backTargetContentColor = Color.fromRGBO(0, 0, 0, 1);
   static TextStyle backContentStyle = TextStyle(
     fontSize: contentSize,
@@ -29,6 +30,8 @@ class CustomTargetPay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final financeProvider = Provider.of<FinanceProvider>(context);
+
+    String actMonth = DateFormat('MM').format(DateTime.now());
 
     return SizedBox(
       height: 240,
@@ -111,7 +114,7 @@ class CustomTargetPay extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text('Día de pago', style: frontContentStyle),
-                            Text('31/05', style: frontContentStyle),
+                            Text('31/$actMonth', style: frontContentStyle),
                           ],
                         ),
                       ],

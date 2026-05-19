@@ -4,12 +4,20 @@ import 'package:finances/providers/page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final financeProvider = FinanceProvider();
+  final pageProvider = PageProvider();
+
+  await financeProvider.loadFormPrefs();
+  await pageProvider.loadFromPrefs();
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => FinanceProvider()),
-        ChangeNotifierProvider(create: (_) => PageProvider()),
+        ChangeNotifierProvider(create: (_) => financeProvider),
+        ChangeNotifierProvider(create: (_) => pageProvider),
       ],
       child: MyApp(),
     ),

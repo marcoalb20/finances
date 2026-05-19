@@ -16,10 +16,10 @@ class StartsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              CustomInitMessage(),
+              CustomStartTitle(),
               SizedBox(height: 10),
-              CustomTargetPay(),
-              CustomStartList(),
+              CustomStartTargetPay(),
+              CustomStartExpenseList(),
               SizedBox(height: 100),
             ],
           ),
